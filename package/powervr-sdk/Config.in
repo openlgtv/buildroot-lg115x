@@ -1,0 +1,57 @@
+config BR2_PACKAGE_POWERVR_SDK
+	bool "powervr-sdk"
+	depends on BR2_TOOLCHAIN_USES_GLIBC && BR2_arm
+	select BR2_PACKAGE_HAS_POWERVR
+	select BR2_PACKAGE_HAS_LIBEGL
+	select BR2_PACKAGE_HAS_LIBGLES
+	help
+	  PowerVR SDK
+
+	  https://github.com/powervr-graphics/Native_SDK
+
+
+if BR2_PACKAGE_POWERVR_SDK
+
+config BR2_PACKAGE_PROVIDES_LIBEGL
+	default "powervr-sdk"
+
+config BR2_PACKAGE_PROVIDES_LIBGLES
+	default "powervr-sdk"
+
+config BR2_PACKAGE_PROVIDES_POWERVR
+	default "powervr-sdk"
+
+config BR2_POWERVR_SDK_EXAMPLES
+	bool "build examples"
+	default n
+	help
+	  Build and install SDK examples
+
+endif
+
+choice
+	prompt "Window System"
+	default BR2_PACKAGE_POWERVR_SDK_NULLWS
+
+	config BR2_PACKAGE_POWERVR_SDK_NULLWS
+		bool "Null"
+
+	config BR2_PACKAGE_POWERVR_SDK_X11WS
+		bool "X11"
+
+	config BR2_PACKAGE_POWERVR_SDK_XCBWS
+		bool "XCB"
+
+	config BR2_PACKAGE_POWERVR_SDK_WAYLANDWS
+		bool "Wayland"
+		select BR2_PACKAGE_WAYLAND
+		select BR2_PACKAGE_HAS_LIBEGL_WAYLAND
+
+	config BR2_PACKAGE_POWERVR_SDK_SCREENWS
+		bool "Screen"
+
+endchoice
+
+comment "powervr-sdk needs a glibc toolchain"
+	depends on BR2_arm
+	depends on !(BR2_TOOLCHAIN_USES_GLIBC)
