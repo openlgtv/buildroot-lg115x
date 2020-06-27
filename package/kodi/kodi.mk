@@ -49,6 +49,11 @@ KODI_DEPENDENCIES = \
 	tinyxml \
 	zlib
 
+# if either is set
+ifneq ($(BR2_PACKAGE_KODI_PLATFORM_WAYLAND_GL)$(BR2_PACKAGE_KODI_PLATFORM_WAYLAND_GLES),)
+	KODI_DEPENDENCIES += wayland-protocols
+endif
+
 # taken from tools/depends/target/*/*-VERSION
 KODI_FFMPEG_VERSION = 4.0.4-Leia-18.4
 KODI_LIBDVDCSS_VERSION = 1.4.2-Leia-Beta-5
@@ -90,12 +95,11 @@ ifeq ($(BR2_ENABLE_LOCALE),)
 KODI_DEPENDENCIES += libiconv
 endif
 
-ifeq ($(BR2_PACKAGE_KODI_PLATFORM_RBPI),y)
+#ifeq ($(BR2_PACKAGE_KODI_PLATFORM_RBPI),y)
 # These CPU-specific options are only used on rbpi:
 # https://github.com/xbmc/xbmc/blob/Krypton/project/cmake/scripts/rbpi/ArchSetup.cmake#L13
-ifeq ($(BR2_arm1176jzf_s)$(BR2_cortex_a7)$(BR2_cortex_a53),y)
+ifeq ($(BR2_arm1176jzf_s)$(BR2_cortex_a7)$(BR2_cortex_a9)$(BR2_cortex_a53),y)
 KODI_CONF_OPTS += -DWITH_CPU="$(GCC_TARGET_CPU)"
-endif
 else ifeq ($(BR2_arceb)$(BR2_arcle),y)
 KODI_CONF_OPTS += -DWITH_ARCH=arc -DWITH_CPU=arc
 else ifeq ($(BR2_armeb),y)

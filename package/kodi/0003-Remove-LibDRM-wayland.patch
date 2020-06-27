@@ -1,0 +1,9 @@
+diff -rub a/cmake/platform/linux/wayland.cmake b/cmake/platform/linux/wayland.cmake
+--- a/cmake/platform/linux/wayland.cmake	2020-06-26 20:28:13.050210045 +0000
++++ b/cmake/platform/linux/wayland.cmake	2020-06-26 20:28:58.505969867 +0000
+@@ -1,4 +1,4 @@
+-set(PLATFORM_REQUIRED_DEPS EGL WaylandProtocols>=1.7 Waylandpp>=0.2.2 LibDRM Xkbcommon>=0.4.1)
++set(PLATFORM_REQUIRED_DEPS EGL WaylandProtocols>=1.7 Waylandpp>=0.2.2 Xkbcommon>=0.4.1)
+ set(PLATFORM_OPTIONAL_DEPS VAAPI)
+ 
+ set(WAYLAND_RENDER_SYSTEM "" CACHE STRING "Render system to use with Wayland: \"gl\" or \"gles\"")

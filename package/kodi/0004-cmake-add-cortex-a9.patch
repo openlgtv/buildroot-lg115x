@@ -1,0 +1,14 @@
+diff -rbu a/cmake/scripts/linux/ArchSetup.cmake b/cmake/scripts/linux/ArchSetup.cmake
+--- a/cmake/scripts/linux/ArchSetup.cmake	2020-06-27 03:09:08.835356164 +0200
++++ b/cmake/scripts/linux/ArchSetup.cmake	2020-06-27 03:08:16.518953817 +0200
+@@ -22,6 +22,10 @@
+     set(ARCH arm)
+     set(NEON True)
+     set(NEON_FLAGS "-fPIC -mcpu=cortex-a7")
++  elseif(CPU MATCHES "cortex-a9")
++    set(ARCH arm)
++    set(NEON True)
++    set(NEON_FLAGS "-fPIC -mcpu=cortex-a9")
+   elseif(CPU MATCHES "cortex-a53")
+     set(ARCH arm)
+     set(NEON True)
