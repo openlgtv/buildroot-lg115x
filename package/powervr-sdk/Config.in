@@ -12,12 +12,6 @@ config BR2_PACKAGE_POWERVR_SDK
 
 if BR2_PACKAGE_POWERVR_SDK
 
-config BR2_PACKAGE_PROVIDES_LIBEGL
-	default "powervr-sdk"
-
-config BR2_PACKAGE_PROVIDES_LIBGLES
-	default "powervr-sdk"
-
 config BR2_PACKAGE_PROVIDES_POWERVR
 	default "powervr-sdk"
 
@@ -45,7 +39,6 @@ choice
 	config BR2_PACKAGE_POWERVR_SDK_WAYLANDWS
 		bool "Wayland"
 		select BR2_PACKAGE_WAYLAND
-		select BR2_PACKAGE_HAS_LIBEGL_WAYLAND
 
 	config BR2_PACKAGE_POWERVR_SDK_SCREENWS
 		bool "Screen"
