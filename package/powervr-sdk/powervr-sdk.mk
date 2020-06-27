@@ -40,6 +40,10 @@ define POWERVR_SDK_INSTALL_HEADERS
 	cp -r $(@D)/include/* $(STAGING_DIR)/usr/include
 endef
 
-POWERVR_SDK_POST_INSTALL_STAGING_HOOKS += POWERVR_SDK_INSTALL_HEADERS
+POWERVR_SDK_INSTALL_STAGING_CMDS += $(POWERVR_SDK_INSTALL_HEADERS)
 
+ifeq ($(BR2_PACKAGE_POWERVR_SDK_HEADERS_ONLY),y)
+$(eval $(generic-package))
+else
 $(eval $(cmake-package))
+endif

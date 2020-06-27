@@ -15,6 +15,12 @@ if BR2_PACKAGE_POWERVR_SDK
 config BR2_PACKAGE_PROVIDES_POWERVR
 	default "powervr-sdk"
 
+config BR2_PACKAGE_POWERVR_SDK_HEADERS_ONLY
+	bool "just install headers"
+	default n
+	help
+	  Skip cmake and just install headers
+
 config BR2_POWERVR_SDK_EXAMPLES
 	bool "build examples"
 	default n
